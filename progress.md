@@ -45,3 +45,21 @@
 ### Notes
 - 改动文件：`lib/client.js`、`lib/plugin.js`、`progress.md`。
 - 回滚方式：撤销本次面板按钮、Lead 校验及日志追加。
+
+## 2026-10-06 - Task: 验证 desktop 解析并上传 GitHub
+
+### What was done
+- 核对 desktop profile 本插件依赖与符号链接，确认源码目标已可访问；未重装插件、未终止用户进程。
+- 创建 UranusNo7/dsh-agent-team-model-switch 私有仓库，初始化 main 并推送本插件源码、说明和日志。
+
+### Testing
+- desktop profile 中实际 import Host 包成功，导出 apply、inject、name。
+- client 子路径解析到 lib/client.js；普通 Node 报 window 未定义，尚未验证桌面浏览器实际挂载。
+- 提交文件仅含 README.md、package.json、cordis.patch.yml、lib 三文件和 progress.md；git diff --cached --check 通过，敏感凭据模式检索无匹配。
+- GitHub 查询确认 private、默认分支 main；首次推送提交 bc4358f 成功。
+
+### Notes
+- 新增本地 Git 元数据，追加 progress.md；未提交 profile 或运行数据。
+- 仓库：https://github.com/UranusNo7/dsh-agent-team-model-switch。
+- 本轮未变更 desktop profile；若仍报旧路径错误，应继续读取真实进程的 profile/日志，不能以 Node 解析通过代替桌面挂载验收。
+- 日志回滚可通过后续 Git revert 撤销本条记录，不重写远端历史。
