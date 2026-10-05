@@ -1,0 +1,5 @@
+# Bundle patch for dsh-team-model-switcher-2.
+# Installing this package as a bundle inserts the plugin entry below.
+- insert:
+    - id: team-model-switcher-2
+      name: dsh-team-model-switcher-2
