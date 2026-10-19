@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Team member model switcher">
+  <rect x="8" y="8" width="112" height="112" rx="20" fill="#2457a6"/>
+  <path d="M39 42h50v14H39zM39 72h30v14H39z" fill="#fff"/>
+  <circle cx="88" cy="79" r="17" fill="#f2b544"/>
+  <path d="m82 79 5 5 10-11" fill="none" stroke="#17345f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -83,12 +83,14 @@ Host 半侧刻意不 import 任何 DSH 包：**profile 之外的文件路径无�
 
 ## 安装 / 卸载
 
-已在 `desktop` profile 安装并启用：
+已在当前 DSH Desktop `0.2.1-rc.1` 的 `desktop` profile 安装并启用：
 
 ```text
-bundle: dsh-team-model-switcher-2   （link:D:/python_code/dsh-agent-team-model-switch）
+bundle: dsh-team-model-switcher-2   （link:D:/python_code/DSH插件/dsh-agent-team-model-switch）
 entry : include:team-model-switcher-2
 ```
+
+当前 Team 版本不再暴露旧版私有 `mailbox.dispatchOnce`，且官方不会投递历史队列；插件会在旧版本存在该入口时保留保护，在当前版本跳过该兼容钩子。
 
 卸载：`plugin_manager remove_bundle dsh-team-model-switcher-2` 即可（会从 `dsh.profile.bundles`
 与 patch 中摘除，无需手工编辑文件；若上次卸载被中断，检查 `cordis.patch.yml` 是否残留条目）。
