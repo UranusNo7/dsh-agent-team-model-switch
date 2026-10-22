@@ -193,3 +193,33 @@
 - 改动文件：`lib/client.js`、`docs/ui.md`、`progress.md`。
 - 未验证限制：无法取得真实页面与真实主题 token 取值，本轮不宣称面板颜色已与官方完全一致；样式刷新效果需要客户端重新加载 bundle（或刷新页面）后由用户/队长复核。
 - 回滚方式：把 `injectStyle` 还原为「存在即 return」并去掉 `apply` 中的 owner/effect 清理，删除 `docs/ui.md` 相应条目与本条日志。
+
+## 2026-10-22 - Task: 生成 Release 标准插件包并记录打包验证
+
+### What was done
+- 用 `npm pack --ignore-scripts --pack-destination artifacts` 从当前工作区生成标准安装包 `artifacts/dsh-team-model-switcher-2-0.1.1.tgz`（包名 `dsh-team-model-switcher-2`，版本 `0.1.1`，9 个条目，压缩后 25318 字节）；`--ignore-scripts` 保证未执行任何 npm 生命周期脚本。
+- 从 tgz 内解出 `package/package.json` 复核 `name` / `version` / `main` / `files` 与源码一致，未改源码、版本号与业务代码。
+
+### Testing
+- `tar -tzf artifacts/dsh-team-model-switcher-2-0.1.1.tgz` 清单全部位于 `package/` 下且齐全：`lib/entry.js`、`lib/plugin.js`、`lib/client.js`、`package.json`、`cordis.patch.yml`、`locale/en.json`、`locale/zh.json`、`icon.svg`、`README.md`。
+- SHA256：`a90f5e10bb1b655e05b775d846f4ff390e4f7e5261218b95a78cbe9c1dd26e6b`。
+
+### Notes
+- 改动文件：新增 `artifacts/dsh-team-model-switcher-2-0.1.1.tgz`，追加 `progress.md` 本条日志；源码未改。
+- 未做部分：未上传 GitHub、未创建 Release、未做全新 DSH profile 安装验证；tgz 未 `git add`，也未 commit/push。
+- 回滚方式：删除该 tgz 文件及本条日志即可。
+
+## 2026-10-22 - Task: v0.1.1 GitHub Release 发布与下载核验补记
+
+### What was done
+- 补记 Lead 已完成的正式发布：`v0.1.1` 已作为 GitHub Release 发布，tag 目标提交 `4dddad25a363bb17f96ca4e41644591065c47493`，Release 见 https://github.com/UranusNo7/dsh-agent-team-model-switch/releases/tag/v0.1.1 。
+- 本成员仅做本地下载核验：Lead 用 `gh release download` 取回附件到 `artifacts/verified-release/dsh-team-model-switcher-2-0.1.1.tgz`，本地比对与打包产物完全一致；未参与上传、tag 或 Release 创建。
+
+### Testing
+- Release 元数据（Lead 侧 `gh release view`）：`isDraft: false`、`isPrerelease: false`，附件状态为已上传，大小 25318 字节，平台 digest `sha256:a90f5e10bb1b655e05b775d846f4ff390e4f7e5261218b95a78cbe9c1dd26e6b`。
+- 本地独立复核下载件：`artifacts/verified-release/dsh-team-model-switcher-2-0.1.1.tgz` 25318 字节，SHA256 `a90f5e10bb1b655e05b775d846f4ff390e4f7e5261218b95a78cbe9c1dd26e6b`，与本地打包产物 `artifacts/dsh-team-model-switcher-2-0.1.1.tgz` 完全一致，上传链路无损坏或截断。
+
+### Notes
+- 改动文件：仅追加 `progress.md` 本条日志；源码、版本号、既有打包记录均未改动。
+- 未做部分：未做全新 DSH profile 安装验证，因此本文不宣称安装可用性；tgz 未 `git add`，提交推送由 Lead 执行。
+- 回滚方式：删除本条日志即可，不影响已发布 Release。
